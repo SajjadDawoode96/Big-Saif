@@ -475,6 +475,151 @@ function BaumanagementPage() {
   )
 }
 
+function FacilityManagementPage() {
+  const [facilityReveal, setFacilityReveal] = useState(50)
+  const facilityComparisonRef = useRef<HTMLDivElement>(null)
+  const updateFacilityReveal = (clientX: number) => {
+    const frame = facilityComparisonRef.current
+    if (!frame) return
+    const bounds = frame.getBoundingClientRect()
+    setFacilityReveal(Math.max(0, Math.min(100, ((clientX - bounds.left) / bounds.width) * 100)))
+  }
+
+  return (
+    <div className="site-shell facility-management-page">
+      <SiteHeader servicePage />
+      <main>
+        <section className="facility-management-hero" aria-labelledby="facility-management-title">
+          <div className="facility-management-editorial">
+            <h1 id="facility-management-title"><span>SAUBERKEIT.</span><span>PFLEGE.</span><span>SERVICE.</span></h1>
+            <p className="facility-management-intro">Professionelle Reinigung und Gebäudepflege für gewerbliche und private Bereiche.</p>
+            <a className="facility-management-button" href={`${applicationBase}#kontakt`}>SERVICE ANFRAGEN <Arrow /></a>
+          </div>
+
+          <div className="facility-management-logo-stage">
+            <img src={`${applicationBase}facility-management-logo.png`} alt="BIG SAIF Facility Management" />
+          </div>
+
+        </section>
+
+        <section className="facility-management-services" aria-labelledby="facility-management-services-title">
+          <div className="facility-management-services-inner">
+            <header className="facility-management-services-intro">
+              <p className="facility-management-services-label">UNSERE LEISTUNGEN</p>
+              <h2 id="facility-management-services-title"><span>FACILITY MANAGEMENT</span><span>MIT SYSTEM.</span></h2>
+              <p className="facility-management-services-copy">Professionelle Reinigung und kontinuierliche Gebäudepflege für Unternehmen, Gewerbe und private Objekte. Zuverlässig organisiert, flexibel ausgeführt und auf Ihre Anforderungen abgestimmt.</p>
+              <p className="facility-management-services-signature"><span>SAUBER.</span><span>ZUVERLÄSSIG.</span><span>REGELMÄSSIG.</span></p>
+            </header>
+
+            <ol className="facility-management-services-index">
+              <li><span>01</span><h3>GEBÄUDEREINIGUNG</h3></li>
+              <li><span>02</span><h3>BÜRO &amp; GEWERBE</h3></li>
+              <li><span>03</span><h3>AUSSENBEREICHE</h3></li>
+              <li><span>04</span><h3>GLASREINIGUNG</h3></li>
+              <li><span>05</span><h3>PARKPLATZ &amp; UMFELD</h3></li>
+              <li><span>06</span><h3>LAUFENDE GEBÄUDEPFLEGE</h3></li>
+            </ol>
+          </div>
+        </section>
+
+        <section className="facility-management-areas" aria-labelledby="facility-management-areas-title">
+          <div className="facility-management-areas-inner">
+            <header className="facility-management-areas-header">
+              <p className="facility-management-areas-label">EINSATZBEREICHE</p>
+              <h2 id="facility-management-areas-title"><span>WO WIR</span><span>ARBEITEN.</span></h2>
+              <p>Facility Management für gewerbliche und private Bereiche.</p>
+            </header>
+
+            <ul className="facility-management-areas-grid">
+              <li>
+                <span>01</span>
+                <div><h3>BÜROS &amp; UNTERNEHMEN</h3><p>Saubere und gepflegte Arbeitsumgebungen für Unternehmen und Büroflächen.</p></div>
+              </li>
+              <li>
+                <span>02</span>
+                <div><h3>GEWERBE &amp; GESCHÄFTE</h3><p>Professionelle Pflege für Verkaufsflächen und gewerblich genutzte Objekte.</p></div>
+              </li>
+              <li>
+                <span>03</span>
+                <div><h3>RESTAURANTS &amp; CAFÉS</h3><p>Sauberkeit und Gebäudepflege für gastronomisch genutzte Bereiche.</p></div>
+              </li>
+              <li>
+                <span>04</span>
+                <div><h3>PRIVATE OBJEKTE</h3><p>Zuverlässige Reinigung und Pflege für private Häuser und Objekte.</p></div>
+              </li>
+              <li>
+                <span>05</span>
+                <div><h3>AUSSENBEREICHE &amp; GÄRTEN</h3><p>Pflege von Außenflächen, Gärten und angrenzenden Bereichen.</p></div>
+              </li>
+              <li>
+                <span>06</span>
+                <div><h3>PARKPLÄTZE &amp; UMFELD</h3><p>Saubere Parkflächen und gepflegte Bereiche rund um das Objekt.</p></div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="facility-management-process" aria-labelledby="facility-management-process-title">
+          <div className="facility-management-process-inner">
+            <header className="facility-management-process-header">
+              <div>
+                <p className="facility-management-process-label">UNSER ABLAUF</p>
+                <h2 id="facility-management-process-title"><span>SO ARBEITEN</span><span>WIR.</span></h2>
+              </div>
+              <p className="facility-management-process-signature"><span>KLAR.</span><span>DIREKT.</span><span>ZUVERLÄSSIG.</span></p>
+            </header>
+
+            <ol className="facility-management-process-steps">
+              <li><p>01</p><h3>ANFRAGE</h3><span>Sie kontaktieren uns und teilen uns mit, welche Leistung Sie benötigen.</span></li>
+              <li><p>02</p><h3>ABSTIMMUNG</h3><span>Wir klären die Anforderungen und stimmen den passenden Leistungsumfang ab.</span></li>
+              <li><p>03</p><h3>DURCHFÜHRUNG</h3><span>Die vereinbarten Arbeiten werden organisiert und professionell ausgeführt.</span></li>
+              <li><p>04</p><h3>BETREUUNG</h3><span>Auch nach der Leistung bleiben wir für weitere Abstimmungen erreichbar.</span></li>
+            </ol>
+          </div>
+        </section>
+
+        <section className="facility-management-gallery" aria-labelledby="facility-management-gallery-title">
+          <div className="facility-management-gallery-inner">
+            <header className="facility-management-gallery-header">
+              <p>EINBLICKE</p>
+              <h2 id="facility-management-gallery-title"><span>SAUBERKEIT,</span><span>DIE MAN SIEHT.</span></h2>
+              <span>Einblicke in unsere Arbeit im Bereich Reinigung und Gebäudepflege.</span>
+            </header>
+            <div className="facility-management-gallery-grid" aria-label="Galerieentwicklung">
+              <figure className="facility-management-gallery-slot facility-management-gallery-slot-1">
+                <div
+                  className="facility-management-comparison"
+                  ref={facilityComparisonRef}
+                  role="slider"
+                  tabIndex={0}
+                  aria-label="Vorher-Nachher Vergleich"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={Math.round(facilityReveal)}
+                  onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); updateFacilityReveal(event.clientX) }}
+                  onPointerMove={(event) => { if (event.currentTarget.hasPointerCapture(event.pointerId)) updateFacilityReveal(event.clientX) }}
+                  onKeyDown={(event) => {
+                    if (event.key === 'ArrowLeft') { event.preventDefault(); setFacilityReveal((value) => Math.max(0, value - 5)) }
+                    if (event.key === 'ArrowRight') { event.preventDefault(); setFacilityReveal((value) => Math.min(100, value + 5)) }
+                  }}
+                >
+                  <img src={`${applicationBase}facility-before-01.png`} alt="Vorher: Reinigungsbereich" />
+                  <div className="facility-management-comparison-after" style={{ clipPath: `inset(0 0 0 ${facilityReveal}%)` }}><img src={`${applicationBase}facility-after-01.png`} alt="Nachher: gereinigter Bereich" /></div>
+                  <div className="facility-management-comparison-divider" style={{ left: `${facilityReveal}%` }}><span /></div>
+                  <small className="facility-management-comparison-before-label">VORHER</small><small className="facility-management-comparison-after-label">NACHHER</small>
+                </div>
+              </figure>
+              {[2, 3, 4, 5].map((slot) => <figure className={`facility-management-gallery-slot facility-management-gallery-slot-${slot}`} key={slot}><span>{String(slot).padStart(2, '0')}</span></figure>)}
+            </div>
+          </div>
+        </section>
+        <section className="facility-management-cta" aria-labelledby="facility-management-cta-title"><div className="facility-management-cta-inner"><h2 id="facility-management-cta-title"><span>BEREIT FÜR</span><span>EIN SAUBERES OBJEKT?</span></h2><div><p>Sprechen Sie mit uns über die passende Reinigung und Gebäudepflege für Ihr Objekt.</p><a href={`${applicationBase}#kontakt`}>SERVICE ANFRAGEN <Arrow /></a></div></div></section>
+      </main>
+      <SiteFooter servicePage />
+    </div>
+  )
+}
+
 function App() {
   const [aboutStageActive, setAboutStageActive] = useState(false)
   const aboutStageRef = useRef<HTMLDivElement>(null)
@@ -484,6 +629,7 @@ function App() {
   const fallbackPathname = new URLSearchParams(window.location.search).get('p')
   const applicationPathname = fallbackPathname ?? directPathname
   const isBaumanagementPage = applicationPathname === '/baumanagement'
+  const isFacilityManagementPage = applicationPathname === '/facility-management'
 
   useEffect(() => {
     const previousScrollRestoration = window.history.scrollRestoration
@@ -532,6 +678,7 @@ function App() {
   }, [])
 
   if (isBaumanagementPage) return <BaumanagementPage />
+  if (isFacilityManagementPage) return <FacilityManagementPage />
 
   return (
     <div className="site-shell">
@@ -778,7 +925,11 @@ function App() {
 
                     <a
                       className="service-link"
-                      href={service.id === 'leistung-bau' ? '/baumanagement' : `#${service.id}`}
+                      href={service.id === 'leistung-bau'
+                        ? `${applicationBase}baumanagement`
+                        : service.id === 'leistung-facility'
+                          ? `${applicationBase}facility-management`
+                          : `#${service.id}`}
                       aria-label={`Mehr über ${service.title.join(' ')} erfahren`}
                     >
                       Mehr erfahren
