@@ -427,8 +427,8 @@ function SiteFooter({ servicePage = false }: { servicePage?: boolean }) {
         <div className="footer-column">
           <h3>LEISTUNGEN</h3>
           <a href={servicePage ? `${applicationBase}baumanagement` : '#leistungen'}>Baumanagement</a>
-          <a href={homeLink('#leistungen')}>Facility Management</a>
-          <a href={homeLink('#leistungen')}>Transport</a>
+          <a href={`${applicationBase}facility-management`}>Facility Management</a>
+          <a href={`${applicationBase}transport`}>Transport</a>
         </div>
         <div className="footer-column">
           <h3>NAVIGATION</h3>
@@ -665,6 +665,78 @@ function TransportPage() {
             </div>
           </div>
         </section>
+        <section className="transport-process" aria-labelledby="transport-process-title">
+          <div className="transport-process-inner">
+            <header className="transport-process-header">
+              <div>
+                <p className="transport-process-eyebrow">SO FUNKTIONIERT'S</p>
+                <h2 id="transport-process-title"><span>SO LÄUFT DER</span><span>TRANSPORT AB.</span></h2>
+              </div>
+              <p className="transport-process-intro">Von der ersten Anfrage bis zur sicheren Lieferung — einfach, direkt und zuverlässig.</p>
+            </header>
+            <ol className="transport-process-stages" role="list">
+              <li>
+                <span className="transport-process-number" aria-hidden="true">01</span>
+                <h3>ANFRAGE</h3>
+                <p>Sie senden uns Ihre Transportanfrage und die wichtigsten Details.</p>
+              </li>
+              <li>
+                <span className="transport-process-number" aria-hidden="true">02</span>
+                <h3>ABHOLUNG</h3>
+                <p>Wir koordinieren Termin und Abholung passend zu Ihren Anforderungen.</p>
+              </li>
+              <li>
+                <span className="transport-process-number" aria-hidden="true">03</span>
+                <h3>TRANSPORT</h3>
+                <p>Ihre Güter werden sicher und zuverlässig zum Ziel transportiert.</p>
+              </li>
+              <li>
+                <span className="transport-process-number" aria-hidden="true">04</span>
+                <h3>LIEFERUNG</h3>
+                <p>Pünktliche Übergabe am vereinbarten Zielort.</p>
+              </li>
+            </ol>
+          </div>
+        </section>
+        <section className="transport-trust" aria-labelledby="transport-trust-title">
+          <div className="transport-trust-inner">
+            <header className="transport-trust-intro">
+              <p className="transport-trust-eyebrow">WARUM BIG SAIF</p>
+              <h2 id="transport-trust-title"><span>WARUM</span><span>BIG SAIF?</span></h2>
+              <p className="transport-trust-copy">Transport braucht Vertrauen. Wir sorgen dafür, dass Ihre Lieferung sicher, direkt und zuverlässig ans Ziel kommt.</p>
+            </header>
+            <ol className="transport-trust-reasons" role="list">
+              <li>
+                <span className="transport-trust-number" aria-hidden="true">01</span>
+                <div><h3>ZUVERLÄSSIG</h3><p>Klare Planung und zuverlässige Durchführung vom Start bis zum Ziel.</p></div>
+              </li>
+              <li>
+                <span className="transport-trust-number" aria-hidden="true">02</span>
+                <div><h3>FLEXIBEL</h3><p>Transportlösungen passend zu unterschiedlichen Anforderungen.</p></div>
+              </li>
+              <li>
+                <span className="transport-trust-number" aria-hidden="true">03</span>
+                <div><h3>DIREKT</h3><p>Direkte Kommunikation und unkomplizierte Abstimmung.</p></div>
+              </li>
+              <li>
+                <span className="transport-trust-number" aria-hidden="true">04</span>
+                <div><h3>SICHER</h3><p>Sorgfältiger Umgang mit Ihrer Lieferung während des gesamten Transports.</p></div>
+              </li>
+            </ol>
+          </div>
+        </section>
+        <section className="transport-contact" aria-labelledby="transport-contact-title">
+          <div className="transport-contact-inner">
+            <header>
+              <p className="transport-contact-eyebrow">BEREIT FÜR DEN TRANSPORT?</p>
+              <h2 id="transport-contact-title"><span>WIR BRINGEN ES</span><span>SICHER ANS ZIEL.</span></h2>
+            </header>
+            <div className="transport-contact-support">
+              <p>Teilen Sie uns mit, was transportiert werden soll. Wir kümmern uns um den passenden Ablauf.</p>
+              <a className="transport-contact-button" href={`${applicationBase}#kontakt`}>TRANSPORT ANFRAGEN <Arrow /></a>
+            </div>
+          </div>
+        </section>
       </main>
       <SiteFooter servicePage />
     </div>
@@ -688,15 +760,15 @@ function App() {
 
     window.history.scrollRestoration = 'manual'
 
-    if (window.location.hash) {
-      window.history.replaceState(
-        window.history.state,
-        '',
-        `${window.location.pathname}${window.location.search}`,
-      )
-    }
+    const target = window.location.hash
+      ? document.getElementById(window.location.hash.slice(1))
+      : null
 
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    if (target) {
+      target.scrollIntoView({ behavior: 'auto', block: 'start' })
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    }
 
     return () => {
       window.history.scrollRestoration = previousScrollRestoration
@@ -706,7 +778,11 @@ function App() {
   useEffect(() => {
     if (!fallbackPathname) return
 
-    window.history.replaceState(window.history.state, '', `${applicationBase}${fallbackPathname.replace(/^\//, '')}`)
+    window.history.replaceState(
+      window.history.state,
+      '',
+      `${applicationBase}${fallbackPathname.replace(/^\//, '')}${window.location.hash}`,
+    )
   }, [fallbackPathname])
 
   useEffect(() => {
